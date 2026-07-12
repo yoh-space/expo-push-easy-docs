@@ -1,3 +1,4 @@
+import { Globe, Plug, ShieldCheck, ArrowRight, Bell, ExternalLink } from 'lucide-react';
 import './App.css';
 
 const codeSend = `import { send } from 'expo-push-easy';
@@ -91,18 +92,22 @@ function Hero() {
       <nav className="nav" aria-label="Main navigation">
         <span className="logo" aria-hidden="true">expo-push-easy</span>
         <div className="nav-links">
-          <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer">npm</a>
+          <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer"><ExternalLink size={14} /> GitHub</a>
+          <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer"><ExternalLink size={14} /> npm</a>
         </div>
       </nav>
       <div className="hero-content">
         <div className="hero-text">
-          <p className="hero-badge" aria-label="Version 2.0.0">v2.0.0</p>
+          <p className="hero-badge" aria-label="Version 2.0.0"><Bell size={14} /> v2.0.0</p>
           <h1 className="hero-tagline">One API.<br />Any runtime.<br />Push notifications <span className="highlight">without the pain.</span></h1>
           <p className="hero-subtitle">Send notifications from <strong>Node.js</strong>, <strong>Convex</strong>, <strong>Cloudflare Workers</strong>, <strong>Bun</strong>, and <strong>Deno</strong> with a single <code>send()</code> function.</p>
           <div className="hero-actions">
-            <a href="#quickstart" className="btn btn-primary" aria-label="Get started with expo-push-easy">Get Started</a>
-            <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" aria-label="View on GitHub">GitHub</a>
+            <a href="#quickstart" className="btn btn-primary" aria-label="Get started with expo-push-easy">
+              Get Started <ArrowRight size={16} />
+            </a>
+            <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" aria-label="View on GitHub">
+              <ExternalLink size={16} /> GitHub
+            </a>
             <span className="npm-badge">
               <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer" aria-label="View on npm">
                 <img src="https://img.shields.io/npm/v/expo-push-easy?color=06b6d4&label=npm" alt="expo-push-easy npm version" width="90" height="22" loading="lazy" />
@@ -120,9 +125,9 @@ function Hero() {
 
 function WhySection() {
   const reasons = [
-    { title: 'Universal Runtime', desc: 'Write once, push anywhere. Node, Convex, Cloudflare Workers, Deno, Bun with zero platform lock-in.' },
-    { title: 'Unified API', desc: 'Same send() function for Expo Push and FCM tokens. Auto-detection means you never think about transport.' },
-    { title: 'Zero Config FCM', desc: 'No googleapis. No jsonwebtoken. Just point at a service account JSON and go.' },
+    { icon: Globe, title: 'Universal Runtime', desc: 'Write once, push anywhere. Node, Convex, Cloudflare Workers, Deno, Bun with zero platform lock-in.' },
+    { icon: Plug, title: 'Unified API', desc: 'Same send() function for Expo Push and FCM tokens. Auto-detection means you never think about transport.' },
+    { icon: ShieldCheck, title: 'Zero Config FCM', desc: 'No googleapis. No jsonwebtoken. Just point at a service account JSON and go.' },
   ];
 
   return (
@@ -131,6 +136,9 @@ function WhySection() {
       <div className="why-grid" role="list">
         {reasons.map((r) => (
           <article key={r.title} className="why-card" role="listitem">
+            <div className="why-icon-wrap">
+              <r.icon size={24} />
+            </div>
             <h3>{r.title}</h3>
             <p>{r.desc}</p>
           </article>
@@ -223,8 +231,8 @@ function Footer() {
   return (
     <footer className="footer" aria-label="Site footer">
       <div className="footer-links">
-        <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer">npm</a>
+        <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer"><ExternalLink size={14} /> GitHub</a>
+        <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer"><ExternalLink size={16} /> npm</a>
         <a href="https://github.com/yohanbcn/expo-push-easy/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
       </div>
       <p className="footer-note">Push from any runtime. Built for the edge.</p>
