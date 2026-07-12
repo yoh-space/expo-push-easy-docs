@@ -1,32 +1,43 @@
-import { useState } from 'react';
 import './App.css';
 
 const codeSend = `import { send } from 'expo-push-easy';
 
+// Expo Push token
 await send({
   token: 'ExponentPushToken[xxx]',
   title: 'Hello!',
   body: 'Works everywhere.',
+});
+
+// FCM v1 token — auto-detected
+await send({
+  token: 'fcm-device-token',
+  title: 'Hi Android!',
+  body: 'Same function, different transport.',
 });`;
 
 const codeInstall = `# Step 1: Install
 npm install expo-push-easy
 
-# Step 2: Send a push
+# Step 2: Send a push notification
 import { send } from 'expo-push-easy';
+
 await send({
-  token: 'ExponentPushToken[xxx]',
-  title: 'Hello!',
-  body: 'From any runtime.',
+  token: 'ExponentPushToken[xxxxxxxxx]',
+  title: 'Hello from expo-push-easy!',
+  body: 'This works in any JavaScript runtime.',
 });
 
-# Step 3: FCM (optional)
+# Step 3: FCM v1 (optional — no googleapis needed)
 import { send } from 'expo-push-easy';
+
 await send({
-  token: 'fcm-device-token',
-  title: 'FCM works too!',
-  body: 'No googleapis needed.',
-  fcm: { serviceAccount: JSON.parse(process.env.GOOGLE_CREDENTIALS) },
+  token: 'fcm-device-token-here',
+  title: 'FCM works too',
+  body: 'Zero config — just a service account JSON.',
+  fcm: {
+    serviceAccount: JSON.parse(process.env.GOOGLE_CREDENTIALS),
+  },
 });`;
 
 const features = [
@@ -62,7 +73,7 @@ const comparisonRows = [
 
 function App() {
   return (
-    <div className="app">
+    <main className="app" role="main">
       <Hero />
       <WhySection />
       <QuickStart />
@@ -70,15 +81,15 @@ function App() {
       <CompatibilityTable />
       <ComparisonTable />
       <Footer />
-    </div>
+    </main>
   );
 }
 
 function Hero() {
   return (
-    <section className="hero">
-      <nav className="nav">
-        <span className="logo">expo-push-easy</span>
+    <header className="hero" aria-label="Hero banner">
+      <nav className="nav" aria-label="Main navigation">
+        <span className="logo" aria-hidden="true">expo-push-easy</span>
         <div className="nav-links">
           <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer">npm</a>
@@ -86,23 +97,24 @@ function Hero() {
       </nav>
       <div className="hero-content">
         <div className="hero-text">
-          <p className="hero-badge">📨 v2.0.0</p>
+          <p className="hero-badge" aria-label="Version 2.0.0">v2.0.0</p>
           <h1 className="hero-tagline">One API.<br />Any runtime.<br />Push notifications <span className="highlight">without the pain.</span></h1>
+          <p className="hero-subtitle">Send notifications from <strong>Node.js</strong>, <strong>Convex</strong>, <strong>Cloudflare Workers</strong>, <strong>Bun</strong>, and <strong>Deno</strong> — with a single <code>send()</code> function.</p>
           <div className="hero-actions">
-            <a href="#quickstart" className="btn btn-primary">Get Started</a>
-            <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">GitHub →</a>
+            <a href="#quickstart" className="btn btn-primary" aria-label="Get started with expo-push-easy">Get Started</a>
+            <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" aria-label="View on GitHub">GitHub →</a>
             <span className="npm-badge">
-              <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer">
-                <img src="https://img.shields.io/npm/v/expo-push-easy?color=06b6d4&label=npm" alt="npm version" />
+              <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer" aria-label="View on npm">
+                <img src="https://img.shields.io/npm/v/expo-push-easy?color=06b6d4&label=npm" alt="expo-push-easy npm version" width="90" height="22" loading="lazy" />
               </a>
             </span>
           </div>
         </div>
-        <div className="hero-code">
+        <div className="hero-code" aria-label="Code example">
           <pre><code>{codeSend}</code></pre>
         </div>
       </div>
-    </section>
+    </header>
   );
 }
 
@@ -114,15 +126,15 @@ function WhySection() {
   ];
 
   return (
-    <section className="section why">
+    <section className="section why" aria-label="Why expo-push-easy">
       <h2 className="section-title">Why expo-push-easy?</h2>
-      <div className="why-grid">
+      <div className="why-grid" role="list">
         {reasons.map((r) => (
-          <div key={r.title} className="why-card">
+          <article key={r.title} className="why-card" role="listitem">
             <span className="why-icon">{r.icon}</span>
             <h3>{r.title}</h3>
             <p>{r.desc}</p>
-          </div>
+          </article>
         ))}
       </div>
     </section>
@@ -131,8 +143,9 @@ function WhySection() {
 
 function QuickStart() {
   return (
-    <section id="quickstart" className="section quickstart">
+    <section id="quickstart" className="section quickstart" aria-label="Quick start guide">
       <h2 className="section-title">Quick Start</h2>
+      <p className="section-desc">Get up and running in under a minute. No accounts. No API keys needed for Expo Push.</p>
       <pre className="code-block"><code>{codeInstall}</code></pre>
     </section>
   );
@@ -140,14 +153,15 @@ function QuickStart() {
 
 function FeaturesGrid() {
   return (
-    <section className="section features">
+    <section className="section features" aria-label="Feature overview">
       <h2 className="section-title">Everything you need</h2>
-      <div className="features-grid">
+      <p className="section-desc">Eight composable exports covering the full push notification lifecycle.</p>
+      <div className="features-grid" role="list">
         {features.map((f) => (
-          <div key={f.name} className="feature-card">
+          <article key={f.name} className="feature-card" role="listitem">
             <h3>{f.name}</h3>
             <p>{f.desc}</p>
-          </div>
+          </article>
         ))}
       </div>
     </section>
@@ -156,8 +170,9 @@ function FeaturesGrid() {
 
 function CompatibilityTable() {
   return (
-    <section className="section compat">
+    <section className="section compat" aria-label="Runtime compatibility table">
       <h2 className="section-title">Runtime Compatibility</h2>
+      <p className="section-desc">Use expo-push-easy in any modern JavaScript environment — serverless, edge, or traditional servers.</p>
       <div className="table-wrap">
         <table>
           <thead>
@@ -181,8 +196,9 @@ function CompatibilityTable() {
 
 function ComparisonTable() {
   return (
-    <section className="section comparison">
+    <section className="section comparison" aria-label="Comparison with alternatives">
       <h2 className="section-title">How it stacks up</h2>
+      <p className="section-desc">See how expo-push-easy compares to expo-server-sdk and firebase-admin across key features.</p>
       <div className="table-wrap">
         <table>
           <thead>
@@ -206,13 +222,13 @@ function ComparisonTable() {
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" aria-label="Site footer">
       <div className="footer-links">
         <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer">npm</a>
-        <span>MIT License</span>
+        <a href="https://github.com/yohanbcn/expo-push-easy/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
       </div>
-      <p className="footer-note">Built for the edge. Push from anywhere.</p>
+      <p className="footer-note">Push from any runtime. Built for the edge.</p>
     </footer>
   );
 }

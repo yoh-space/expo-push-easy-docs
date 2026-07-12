@@ -377,7 +377,36 @@ td {
     font-size: 1.6rem;
   }
 
-  .hero-actions {
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  margin-bottom: 28px;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.hero-subtitle code {
+  color: #63D9FF;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.hero-subtitle strong {
+  color: #e2e8f0;
+}
+
+.section-desc {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-top: -32px;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
     flex-direction: column;
     align-items: flex-start;
   }
