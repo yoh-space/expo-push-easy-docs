@@ -9,7 +9,7 @@ await send({
   body: 'Works everywhere.',
 });
 
-// FCM v1 token — auto-detected
+// FCM v1 token (auto-detected)
 await send({
   token: 'fcm-device-token',
   title: 'Hi Android!',
@@ -28,20 +28,20 @@ await send({
   body: 'This works in any JavaScript runtime.',
 });
 
-# Step 3: FCM v1 (optional — no googleapis needed)
+# Step 3: FCM v1 (optional, no googleapis needed)
 import { send } from 'expo-push-easy';
 
 await send({
   token: 'fcm-device-token-here',
   title: 'FCM works too',
-  body: 'Zero config — just a service account JSON.',
+  body: 'Zero config, just a service account JSON.',
   fcm: {
     serviceAccount: JSON.parse(process.env.GOOGLE_CREDENTIALS),
   },
 });`;
 
 const features = [
-  { name: 'send()', desc: 'Universal push — Expo Push & FCM tokens auto-detected.' },
+  { name: 'send()', desc: 'Universal push: Expo Push & FCM tokens auto-detected.' },
   { name: 'sendBatch()', desc: 'Send thousands of notifications in a single call.' },
   { name: 'sendExpoPush()', desc: 'Direct Expo Push API call when you know the token type.' },
   { name: 'sendFcm()', desc: 'Direct FCM v1 HTTP API call with baked-in auth.' },
@@ -52,23 +52,23 @@ const features = [
 ];
 
 const compatRows = [
-  { runtime: 'Node.js', send: '✅', sched: '✅', adapters: '✅' },
-  { runtime: 'Convex', send: '✅', sched: '✅', adapters: '✅' },
-  { runtime: 'Cloudflare Workers', send: '✅', sched: '—', adapters: '—' },
-  { runtime: 'Bun', send: '✅', sched: '✅', adapters: '✅' },
-  { runtime: 'Deno', send: '✅', sched: '✅', adapters: '✅' },
+  { runtime: 'Node.js', send: 'Yes', sched: 'Yes', adapters: 'Yes' },
+  { runtime: 'Convex', send: 'Yes', sched: 'Yes', adapters: 'Yes' },
+  { runtime: 'Cloudflare Workers', send: 'Yes', sched: '-', adapters: '-' },
+  { runtime: 'Bun', send: 'Yes', sched: 'Yes', adapters: 'Yes' },
+  { runtime: 'Deno', send: 'Yes', sched: 'Yes', adapters: 'Yes' },
 ];
 
 const headers = ['Runtime', 'send()', 'Scheduling', 'Adapters'];
 
 const comparisonHeaders = ['', 'expo-push-easy', 'expo-server-sdk', 'firebase-admin'];
 const comparisonRows = [
-  { feature: 'Expo Push', a: '✅', b: '✅', c: '❌' },
-  { feature: 'FCM v1', a: '✅', b: '❌', c: '✅' },
-  { feature: 'Edge runtime', a: '✅', b: '❌', c: '❌' },
-  { feature: 'Token auto-detect', a: '✅', b: '❌', c: '❌' },
-  { feature: 'Batch send', a: '✅', b: '✅', c: '✅' },
-  { feature: 'Scheduling', a: '✅', b: '❌', c: '❌' },
+  { feature: 'Expo Push', a: 'Yes', b: 'Yes', c: 'No' },
+  { feature: 'FCM v1', a: 'Yes', b: 'No', c: 'Yes' },
+  { feature: 'Edge runtime', a: 'Yes', b: 'No', c: 'No' },
+  { feature: 'Token auto-detect', a: 'Yes', b: 'No', c: 'No' },
+  { feature: 'Batch send', a: 'Yes', b: 'Yes', c: 'Yes' },
+  { feature: 'Scheduling', a: 'Yes', b: 'No', c: 'No' },
 ];
 
 function App() {
@@ -99,10 +99,10 @@ function Hero() {
         <div className="hero-text">
           <p className="hero-badge" aria-label="Version 2.0.0">v2.0.0</p>
           <h1 className="hero-tagline">One API.<br />Any runtime.<br />Push notifications <span className="highlight">without the pain.</span></h1>
-          <p className="hero-subtitle">Send notifications from <strong>Node.js</strong>, <strong>Convex</strong>, <strong>Cloudflare Workers</strong>, <strong>Bun</strong>, and <strong>Deno</strong> — with a single <code>send()</code> function.</p>
+          <p className="hero-subtitle">Send notifications from <strong>Node.js</strong>, <strong>Convex</strong>, <strong>Cloudflare Workers</strong>, <strong>Bun</strong>, and <strong>Deno</strong> with a single <code>send()</code> function.</p>
           <div className="hero-actions">
             <a href="#quickstart" className="btn btn-primary" aria-label="Get started with expo-push-easy">Get Started</a>
-            <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" aria-label="View on GitHub">GitHub →</a>
+            <a href="https://github.com/yohanbcn/expo-push-easy" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" aria-label="View on GitHub">GitHub</a>
             <span className="npm-badge">
               <a href="https://www.npmjs.com/package/expo-push-easy" target="_blank" rel="noopener noreferrer" aria-label="View on npm">
                 <img src="https://img.shields.io/npm/v/expo-push-easy?color=06b6d4&label=npm" alt="expo-push-easy npm version" width="90" height="22" loading="lazy" />
@@ -120,9 +120,9 @@ function Hero() {
 
 function WhySection() {
   const reasons = [
-    { icon: '⚡', title: 'Universal Runtime', desc: 'Write once, push anywhere. Node, Convex, Cloudflare Workers, Deno, Bun — zero platform lock-in.' },
-    { icon: '🔌', title: 'Unified API', desc: 'Same send() function for Expo Push and FCM tokens. Auto-detection means you never think about transport.' },
-    { icon: '🔐', title: 'Zero Config FCM', desc: 'No googleapis. No jsonwebtoken. Just point at a service account JSON and go.' },
+    { title: 'Universal Runtime', desc: 'Write once, push anywhere. Node, Convex, Cloudflare Workers, Deno, Bun with zero platform lock-in.' },
+    { title: 'Unified API', desc: 'Same send() function for Expo Push and FCM tokens. Auto-detection means you never think about transport.' },
+    { title: 'Zero Config FCM', desc: 'No googleapis. No jsonwebtoken. Just point at a service account JSON and go.' },
   ];
 
   return (
@@ -131,7 +131,6 @@ function WhySection() {
       <div className="why-grid" role="list">
         {reasons.map((r) => (
           <article key={r.title} className="why-card" role="listitem">
-            <span className="why-icon">{r.icon}</span>
             <h3>{r.title}</h3>
             <p>{r.desc}</p>
           </article>
@@ -172,7 +171,7 @@ function CompatibilityTable() {
   return (
     <section className="section compat" aria-label="Runtime compatibility table">
       <h2 className="section-title">Runtime Compatibility</h2>
-      <p className="section-desc">Use expo-push-easy in any modern JavaScript environment — serverless, edge, or traditional servers.</p>
+      <p className="section-desc">Use expo-push-easy in any modern JavaScript environment: serverless, edge, or traditional servers.</p>
       <div className="table-wrap">
         <table>
           <thead>

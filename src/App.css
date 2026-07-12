@@ -203,12 +203,6 @@ a:hover {
   transform: translateY(-2px);
 }
 
-.why-icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 16px;
-}
-
 .why-card h3 {
   font-size: 1.15rem;
   margin-bottom: 10px;
