@@ -1,0 +1,41 @@
+# expo-push-easy
+> Universal push notification library for Expo Push and FCM v1. Works in Node.js, Convex, Cloudflare Workers, Bun, and Deno.
+
+## Overview
+- [Landing Page](https://expo-push-easy-docs.vercel.app/): Official documentation and getting started guide for expo-push-easy.
+
+## Quick Start
+Install: `npm install expo-push-easy`
+
+```js
+import { send } from 'expo-push-easy';
+
+// Expo Push
+await send({ token: 'ExponentPushToken[xxx]', title: 'Hello', body: 'World' });
+
+// FCM v1 (auto-detected)
+await send({ token: 'fcm-device-token', title: 'Hi', body: 'Android', fcm: { serviceAccount } });
+```
+
+## Key Exports
+- `send(token, options)` — Universal push. Auto-detects Expo Push vs FCM.
+- `sendBatch(messages)` — Send multiple notifications at once.
+- `sendExpoPush(token, options)` — Direct Expo Push API call.
+- `sendFcm(token, options)` — Direct FCM v1 HTTP API call.
+- `registerForPushNotifications()` — Client helper for Expo apps.
+- `onTokenRefresh(handler)` — Listen for push token changes.
+
+## Runtime Support
+- Node.js: send, sendBatch, scheduling, adapters
+- Convex: send, sendBatch, scheduling, adapters
+- Cloudflare Workers: send, sendBatch
+- Bun: send, sendBatch, scheduling, adapters
+- Deno: send, sendBatch, scheduling, adapters
+
+## FCM Auth
+No googleapis or jsonwebtoken dependencies. Just provide a Google service account JSON and expo-push-easy handles JWT generation automatically.
+
+## Links
+- [GitHub](https://github.com/yohanbcn/expo-push-easy)
+- [npm](https://www.npmjs.com/package/expo-push-easy)
+- [License (MIT)](https://github.com/yohanbcn/expo-push-easy/blob/main/LICENSE)
